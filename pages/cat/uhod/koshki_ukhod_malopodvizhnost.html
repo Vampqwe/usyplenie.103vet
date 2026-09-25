@@ -953,85 +953,18 @@
         </div>
     </footer>
 
-    <script>
-        // Бургер-меню
-        const burger = document.querySelector('.nav-burger');
-        const mobileMenu = document.querySelector('.mobile-menu');
-        const overlay = document.querySelector('.mobile-menu-overlay');
 
-        function openMobileMenu() {
-            burger.classList.add('active');
-            mobileMenu.classList.add('active');
-            overlay.classList.add('active');
-            burger.setAttribute('aria-expanded', 'true');
-            mobileMenu.setAttribute('aria-hidden', 'false');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeMobileMenu() {
-            burger.classList.remove('active');
-            mobileMenu.classList.remove('active');
-            overlay.classList.remove('active');
-            burger.setAttribute('aria-expanded', 'false');
-            mobileMenu.setAttribute('aria-hidden', 'true');
-            document.body.style.overflow = '';
-        }
-
-        burger.addEventListener('click', () => {
-            if (mobileMenu.classList.contains('active')) {
-                closeMobileMenu();
-            } else {
-                openMobileMenu();
-            }
-        });
-
-        overlay.addEventListener('click', closeMobileMenu);
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
-                closeMobileMenu();
-            }
-        });
-
-        // Раскрывающиеся подменю в мобильной версии
-        document.querySelectorAll('.mobile-parent').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const li = btn.parentElement;
-                li.classList.toggle('open');
-            });
-        });
-
-        // Закрытие мобильного меню при клике по обычной ссылке
-        document.querySelectorAll('.mobile-menu-list a').forEach(link => {
-            link.addEventListener('click', closeMobileMenu);
-        });
-
-        // Dropdown на десктопе: закрытие при клике вне
-        document.addEventListener('click', (e) => {
-            document.querySelectorAll('.nav-menu > li.has-dropdown.open').forEach(li => {
-                if (!li.contains(e.target)) {
-                    li.classList.remove('open');
-                }
-            });
-        });
-
-        // На тач-устройствах — открытие dropdown по клику (а не hover)
-        if ('ontouchstart' in window) {
-            document.querySelectorAll('.nav-menu > li.has-dropdown > a').forEach(link => {
-                link.addEventListener('click', (e) => {
-                    const li = link.parentElement;
-                    if (!li.classList.contains('open')) {
-                        e.preventDefault();
-                        // Закрываем другие открытые
-                        document.querySelectorAll('.nav-menu > li.has-dropdown.open').forEach(other => {
-                            if (other !== li) other.classList.remove('open');
-                        });
-                        li.classList.add('open');
-                    }
-                });
-            });
-        }
-    </script>
-
+<script>
+// FAQ Accordion
+document.querySelectorAll('.faq-question').forEach(q => {
+q.addEventListener('click', () => {
+const item = q.parentElement;
+const isActive = item.classList.contains('active');
+document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+if (!isActive) item.classList.add('active');
+});
+});
+</script>
 <script>
 // Мобильное выдвижное меню (бургер)
 (function () {
