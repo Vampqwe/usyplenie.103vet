@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <!-- Главная страница -->
+    <url>
+        <loc>https://usyplenie.103vet.by/</loc>
+        <lastmod>2025-01-20</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    
+    <!-- Страницы симптомов кошек -->
+    <url>
+        <loc>https://usyplenie.103vet.by/pages/cat/simptomy/koshki_simptomy.html</loc>
+        <lastmod>2025-01-20</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://usyplenie.103vet.by/pages/cat/simptomy/koshki_simptomy_khronicheskaya_bolezn_pochek.html</loc>
+        <lastmod>2025-01-20</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://usyplenie.103vet.by/pages/cat/simptomy/koshki_simptomy_dementsiya.html</loc>
+        <lastmod>2025-01-20</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://usyplenie.103vet.by/pages/cat/simptomy/koshki_simptomy_tyazhelyy_stomatit.html</loc>
+        <lastmod>2025-01-20</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://usyplenie.103vet.by/pages/cat/simptomy/koshki_simptomy_gipertireoz.html</loc>
+        <lastmod>2025-01-20</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    
+    <!-- Страницы ухода за кошками -->
+    <url>
+        <loc>https://usyplenie.103vet.by/pages/cat/uhod/koshki_ukhod.html</loc>
+        <lastmod>2025-01-20</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://usyplenie.103vet.by/pages/cat/uhod/koshki_ukhod_kontrol_boli.html</loc>
+        <lastmod>2025-01-20</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://usyplenie.103vet.by/pages/cat/uhod/koshki_ukhod_malopodvizhnost.html</loc>
+        <lastmod>2025-01-20</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://usyplenie.103vet.by/pages/cat/uhod/koshki_ukhod_pitanie.html</loc>
+        <lastmod>2025-01-20</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+</urlset>
