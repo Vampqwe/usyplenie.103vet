@@ -1,0 +1,66 @@
+{
+    "name": "vampqwe/vetminsk",
+    "description": "Достойный уход — информационный сайт ветеринарной клиники на лёгком движке VampqweEngine",
+    "type": "project",
+    "license": "MIT",
+    "keywords": [
+        "php",
+        "veterinary",
+        "cms",
+        "lightweight-framework",
+        "vampqwe-engine",
+        "palliative-care",
+        "schema-org"
+    ],
+    "homepage": "https://usyplenie.103vet.by/",
+    "authors": [
+        {
+            "name": "Vampqwe",
+            "homepage": "https://github.com/Vampqwe",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "email": "care@103vet.by",
+        "issues": "https://github.com/Vampqwe/usyplenie.103vet/issues"
+    },
+    "require": {
+        "php": ">=8.0",
+        "ext-pdo": "*",
+        "ext-pdo_mysql": "*",
+        "ext-mbstring": "*",
+        "ext-json": "*",
+        "ramsey/uuid": "^4.9"
+    },
+    "suggest": {
+        "ext-redis": "Для хранения сессий в Redis (рекомендуется для продакшена)"
+    },
+    "autoload": {
+        "classmap": [
+            "core/classes/system/",
+            "core/classes/module/",
+            "admin/controllers/",
+            "admin/services/"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Vampqwe\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "dump-autoload": "composer dump-autoload -o",
+        "post-update-cmd": [
+            "@dump-autoload"
+        ],
+        "post-install-cmd": [
+            "@dump-autoload"
+        ]
+    },
+    "config": {
+        "sort-packages": true,
+        "optimize-autoloader": true
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

@@ -1,0 +1,87 @@
+<!-- ШАПКА -->
+<header class="site-header">
+    <nav class="nav" aria-label="Главная навигация">
+        <a href="/" class="nav-logo">Достойный уход</a>
+        
+        <!-- ЕДИНАЯ НАВИГАЦИЯ (один <ul> для десктопа и мобилки) -->
+        <ul class="nav-menu">
+            <!-- Поддержка собак -->
+            <li class="nav-item has-dropdown">
+                <button type="button" class="nav-link nav-toggle" aria-expanded="false">
+                    <span>Поддержка собак</span>
+                    <span class="nav-arrow" aria-hidden="true">▾</span>
+                </button>
+                <div class="nav-dropdown">
+                    <div class="nav-dropdown-bridge"></div>
+                    <div class="dropdown-group">
+                        <div class="dropdown-title">симптомы</div>
+                        <ul class="dropdown-list">
+                            <li><a href="/sobaki/simptomy/">Тревожные симптомы</a></li>
+                            <li><a href="/sobaki/simptomy/onkologiya/">Онкология</a></li>
+                            <li><a href="/sobaki/simptomy/odyshka-i-serdtse/">Сердечная недостаточность</a></li>
+                            <li><a href="/sobaki/simptomy/paralich-lap/">Паралич задних лап</a></li>
+                            <li><a href="/sobaki/simptomy/otkaz-ot-edy/">Отказ от еды</a></li>
+                        </ul>
+                    </div>
+                    <div class="dropdown-group">
+                        <div class="dropdown-title">уход</div>
+                        <ul class="dropdown-list">
+                            <li><a href="/sobaki/ukhod/">Паллиативный уход</a></li>
+                            <li><a href="/sobaki/ukhod/domashnyaya-sreda/">Домашнее пространство</a></li>
+                            <li><a href="/sobaki/ukhod/obezbolivanie/">Контроль боли</a></li>
+                            <li><a href="/sobaki/ukhod/gigiena/">Ежедневная гигиена</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            
+            <!-- Поддержка кошек -->
+            <li class="nav-item has-dropdown">
+                <button type="button" class="nav-link nav-toggle" aria-expanded="false">
+                    <span>Поддержка кошек</span>
+                    <span class="nav-arrow" aria-hidden="true">▾</span>
+                </button>
+                <div class="nav-dropdown">
+                    <div class="nav-dropdown-bridge"></div>
+                    <div class="dropdown-group">
+                        <div class="dropdown-title">симптомы</div>
+                        <ul class="dropdown-list">
+                            <li><a href="/koshki/simptomy/">Тревожные симптомы</a></li>
+                            <li><a href="/koshki/simptomy/dementsiya/">Деменция</a></li>
+                            <li><a href="/koshki/simptomy/gipertireoz/">Гипертиреоз</a></li>
+                            <li><a href="/koshki/simptomy/hbp/">ХБП</a></li>
+                            <li><a href="/koshki/simptomy/stomatit/">Стоматит</a></li>
+                        </ul>
+                    </div>
+                    <div class="dropdown-group">
+                        <div class="dropdown-title">уход</div>
+                        <ul class="dropdown-list">
+                            <li><a href="/koshki/ukhod/">Паллиативный уход</a></li>
+                            <li><a href="/koshki/ukhod/kontrol-boli/">Контроль боли</a></li>
+                            <li><a href="/koshki/ukhod/malopodvizhnost/">Малоподвижность</a></li>
+                            <li><a href="/koshki/ukhod/pitanie/">Питание</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            
+            <!-- Обычные пункты -->
+            <li class="nav-item">
+                <a href="/kachestvo-zhizni/" class="nav-link">Качество жизни</a>
+            </li>
+            <li class="nav-item">
+                <a href="/pomoshch-vladeltsu/" class="nav-link">Помощь владельцу</a>
+            </li>
+        </ul>
+        
+        <!-- Бургер для мобильной версии -->
+        <button class="nav-burger" type="button" aria-label="Открыть меню" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+</header>
+
+<!-- Overlay для мобильного меню -->
+<div class="nav-overlay" aria-hidden="true"></div>

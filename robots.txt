@@ -1,0 +1,23 @@
+# robots.txt для сайта usyplenie.103vet.by
+# Проект ветеринарной клиники 103vet.by — Достойный уход за питомцем в Минске
+
+User-agent: *
+Allow: /
+
+# Служебные директории и файлы приложения
+Disallow: /core/
+Disallow: /vendor/
+Disallow: /tests/
+Disallow: /todo/
+Disallow: /result_pages/
+Disallow: /.git/
+Disallow: /.osp/
+Disallow: /logs/
+Disallow: /*.cmd$
+Disallow: /*.log$
+
+# Карта сайта
+Sitemap: https://usyplenie.103vet.by/sitemap.xml
+
+# Вежливый интервал обхода (поддерживается Yandex; Google игнорирует)
+Crawl-delay: 1
