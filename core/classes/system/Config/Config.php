@@ -66,7 +66,9 @@ class Config {
             }
             list($key, $value) = explode('=', $line, 2);
             $key = trim($key);
-            $value = $this->normalizeValue($this->unquoteValue(trim($value)));
+            // ИСПРАВЛЕНО (пункт 10): normalizeValue получает ключ — булева
+            // нормализация применяется только к известным булевым опциям
+            $value = $this->normalizeValue($this->unquoteValue(trim($value)), $key);
             // Перезаписываем значение из ранее загруженного файла (приоритет у последнего)
             $this->envVars[$key] = $value;
             putenv("$key=$value");
@@ -74,16 +76,40 @@ class Config {
     }
 
     /**
-     * Приводит строковые булевы значения к единому виду true/false
+     * Приводит строковые булевы значения к единому виду true/false.
+     *
+     * ИСПРАВЛЕНО (пункт 10): раньше сюда попадали ЛЮБЫЕ значения, и
+     * «0»/пустая строка превращались в строку "false". Это ломало:
+     *   - SAVE_SESSION_PATH_AUTH= (Redis-пароль становился литералом "false");
+     *   - числовые опции SESSION.*_LIFETIME / PORT с значением 0;
+     *   - любые future numeric-значения ("0" → "false").
+     * Теперь нормализация применяется ТОЛЬКО к известным булевым ключам;
+     * остальные значения сохраняются как есть (после снятия кавычек).
      */
-    private function normalizeValue(string $value): string {
-        $lower = strtolower($value);
-        if (in_array($lower, ['true', '1', 'yes', 'on'], true)) {
-            return 'true';
+    private const BOOLEAN_KEYS = [
+        'APP_DEBUG',
+        'SESSION.COOKIE_HTTPONLY',
+        'SESSION.COOKIE_SECURE',
+        'LOG_ENABLED',
+    ];
+
+    private function normalizeValue(string $value, string $key = ''): string {
+        // Числа («0», «6379», «3600») никогда не трогаем — это НЕ булевы значения
+        if ($value !== '' && ctype_digit($value)) {
+            return $value;
         }
-        if (in_array($lower, ['false', '0', 'no', 'off', ''], true)) {
-            return 'false';
+        // Булева нормализация — только для явно булевых ключей
+        if ($key !== '' && in_array($key, self::BOOLEAN_KEYS, true)) {
+            $lower = strtolower($value);
+            if (in_array($lower, ['true', '1', 'yes', 'on'], true)) {
+                return 'true';
+            }
+            if (in_array($lower, ['false', '0', 'no', 'off'], true)) {
+                return 'false';
+            }
+            return $value;
         }
+        // Для всех прочих ключей значение остаётся как есть (включая пустое)
         return $value;
     }
 

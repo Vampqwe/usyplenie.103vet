@@ -31,6 +31,12 @@ class PageController
 
     public function handle(string $uri): void
     {
+        // Единая точка входа для superglobals: после внутреннего редиректа
+        // Apache REQUEST_URI мог быть перезаписан на /index.php.
+        // Подставляем восстановленный front controller'ом URI, чтобы весь код
+        // (sitemap, плагины, будущие модули) видел один и тот же канонический путь.
+        $_SERVER['REQUEST_URI'] = $uri;
+
         try {
             $pageData = $this->pageService->getPageByUri($uri);
             if (($pageData['page_type'] ?? '') === '404') {
@@ -81,16 +87,25 @@ class PageController
 
     /**
      * Рендерит head-full.html с подстановкой переменных
-     * Canonical URL строится через Url::canonical() — единая точка истины
+     * Canonical URL строится через Url::buildCanonical() — единая точка истины
      */
     private function renderHead(array $pageData, string $uri): string
     {
-        // ✅ Используем Url вместо ручной конкатенации
-	$canonical = !empty($pageData['canonical'])
-		? $pageData['canonical']
-		: Url::buildCanonical($pageData['slug'] ?? '', $this->config);
+        $pageType = (string)($pageData['page_type'] ?? 'article');
 
-        $ogType = ($pageData['page_type'] ?? 'article') === 'home' ? 'website' : 'article';
+        // ИСПРАВЛЕНО (пункт 7): у страниц-ошибок (404/500) canonical НЕ должен
+        // указывать на несуществующий/служебный URL. Страница-заглушка
+        // рендерится под произвольными URI, поэтому для 404/500 canonical
+        // = главная сайта. У обычных страниц — из БД или по slug.
+        if (!empty($pageData['canonical'])) {
+            $canonical = $pageData['canonical'];
+        } elseif ($pageType === '404' || $pageType === '500') {
+            $canonical = Url::buildCanonical('', $this->config); // корень сайта
+        } else {
+            $canonical = Url::buildCanonical($pageData['slug'] ?? '', $this->config);
+        }
+
+        $ogType = $pageType === 'home' ? 'website' : 'article';
 
         $headTpl = $this->createTemplate();
         $headTpl->addTplFile($this->templatesPath . 'head-full.html');
@@ -224,7 +239,7 @@ class PageController
             'title'          => $pageData['title'] ?? 'Ошибка сервера',
             'description'    => $pageData['description'] ?? 'Внутренняя ошибка сервера',
             'keywords'       => '',
-            'canonical'      => Url::canonical('500', $this->config),
+            'canonical'      => Url::buildCanonical('', $this->config), // пункт 7: не канонизируем служебный /500
             'og:title'       => $pageData['og_title'] ?? $pageData['title'] ?? 'Ошибка сервера',
             'og:description' => $pageData['og_description'] ?? 'Внутренняя ошибка сервера',
             'og:type'        => 'website',
